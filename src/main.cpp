@@ -9,15 +9,19 @@ auto list = [](Arguments) {
 };
 
 auto mount = [](Arguments args) {
+  Cli::ValidateCommandArgsSize(args, 1);
+
   auto disk = args[0];
-  std::system(("sudo mkdir -p /media/" + disk).c_str());
   std::cout << "Mounting..." << std::endl;
+  std::system(("sudo mkdir -p /media/" + disk).c_str());
   std::system(("sudo mount -t auto /dev/" + disk + " /media/" + disk).c_str());
   std::cout << "Mounted " + disk + " at /media/" + disk << std::endl;
   return 0;
 };
 
 auto umount = [](Arguments args) {
+  Cli::ValidateCommandArgsSize(args, 1);
+
   auto disk = args[0];
   std::cout << "Umounting..." << std::endl;
   std::system(("sudo umount /dev/" + disk).c_str());
