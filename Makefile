@@ -1,24 +1,33 @@
-CXX=g++
+CXX=clang++
+NAME=dm
 
 SRC_DIR=./src
 SRC=$(SRC_DIR)/main.cpp
 
 OUT_DIR=./build
-OUT=$(OUT_DIR)/$(shell basename $(CURDIR)).o
+OUT=$(OUT_DIR)/$(NAME).o
 
 LIB_PATH=/usr/local/lib/cli-creator/cli-creator.so
 BIN_PATH=/usr/local/bin
-BIN=$(BIN_PATH)/$(shell basename $(CURDIR))
+BIN=$(BIN_PATH)/$(NAME)
 
 build:
 	mkdir -p $(OUT_DIR)
 	$(CXX) $(LIB_PATH) $(SRC) -o $(OUT)
 
 install:
-	sudo cp $(OUT) $(BIN)
+	if [ "$(NO_SUDO)" == "1" ]; then \
+		cp $(OUT) $(BIN); \
+	else \
+		sudo cp $(OUT) $(BIN); \
+	fi
 
 uninstall:
-	sudo rm -rf $(BIN)
+	if [ "$(NO_SUDO)" == "1" ]; then \
+		rm -rf $(BIN); \
+	else \
+		sudo rm -rf $(BIN); \
+	fi
 
 test:
 	$(OUT) --hello

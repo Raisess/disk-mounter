@@ -21,13 +21,13 @@ Usage:
 ```shell
 // COMMANDS:
 // list all mountable devices
-disk-mounter list
+dm list
 
 // mount disk from /dev/sda in /media/sda
-disk-mounter mount sda
+sudo dm mount sda
 
 // umount the sda disk and can remove safety
-disk-mounter umount sda
+sudo dm umount sda
 ```
 
 that is all.

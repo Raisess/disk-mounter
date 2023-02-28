@@ -13,8 +13,8 @@ auto mount = [](Arguments args) {
 
   auto disk = args[0];
   std::cout << "Mounting..." << std::endl;
-  std::system(("sudo mkdir -p /media/" + disk).c_str());
-  std::system(("sudo mount -t auto /dev/" + disk + " /media/" + disk).c_str());
+  std::system(("mkdir -p /media/" + disk).c_str());
+  std::system(("mount -t auto /dev/" + disk + " /media/" + disk).c_str());
   std::cout << "Mounted " + disk + " at /media/" + disk << std::endl;
   return 0;
 };
@@ -24,8 +24,8 @@ auto umount = [](Arguments args) {
 
   auto disk = args[0];
   std::cout << "Umounting..." << std::endl;
-  std::system(("sudo umount /dev/" + disk).c_str());
-  std::system(("sudo rm -rf /media/" + disk).c_str());
+  std::system(("umount /dev/" + disk).c_str());
+  std::system(("rm -rf /media/" + disk).c_str());
   std::cout << "Umounted " + disk << std::endl;
   return 0;
 };
